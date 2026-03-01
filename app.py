@@ -211,21 +211,15 @@ st.markdown("</div>", unsafe_allow_html=True)
 # =========================
 # Tombol navigasi utama
 # =========================
-button_html = []
 for item in TOOLS:
-	kind_class = "nav-download" if item["kind"] == "download" else "nav-process"
 	label = f"{item['icon']} {item['label']}"
 	if item["url"]:
-		button_html.append(
-			f'<a class="nav-btn {kind_class}" href="{item["url"]}" target="_self">{label}</a>'
-		)
+		st.link_button(label, item["url"], use_container_width=True)
 	else:
-		button_html.append(f'<div class="nav-btn-disabled">{label}<br/>Segera hadir</div>')
-
-st.markdown(f'<div class="nav-grid">{"".join(button_html)}</div>', unsafe_allow_html=True)
+		st.button(f"{label} — Segera hadir", disabled=True, use_container_width=True)
 
 
 st.markdown(
-	'<div class="note">Logo memakai file static/Logo.png dan seluruh navigasi tetap pada halaman yang sama.</div>',
+	'<div class="note">Logo memakai file static/Logo.png. Link dibuka sebagai tautan eksternal agar stabil saat deploy.</div>',
 	unsafe_allow_html=True,
 )
